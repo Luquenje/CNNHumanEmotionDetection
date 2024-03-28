@@ -7,6 +7,8 @@ from keras.optimizers import Adam
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
 
+
+
 # Check if GPU is available and set it as the default device
 # if tf.config.experimental.list_physical_devices('GPU'):
 #     print('Using GPU')

@@ -23,7 +23,7 @@ print("Loaded model from disk")
 
 print(emotion_model.summary())
 
-visualkeras.layered_view(emotion_model, to_file='ResNet50_Model_Diagram.png') # write and show
+visualkeras.layered_view(emotion_model, to_file='screenshots/ResNet50_Model_Diagram.png') # write and show
 
 # Initialize image data generator with rescaling
 test_data_gen = ImageDataGenerator(rescale=1./255)

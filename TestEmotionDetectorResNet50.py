@@ -1,15 +1,31 @@
+import sys
 import cv2
 import numpy as np
 from keras.models import model_from_json
 import os
 
+use_webcam = False
+default_video_path = 'sample2.mp4'
+
+# total cmd line arguments
+n = len(sys.argv)
+if (n == 2):
+    if sys.argv[1] == "Webcam":
+        use_webcam = True
+    else:
+        default_video_path = sys.argv[1]
+
+if os.path.isfile(default_video_path) == False:
+    print("File does not exist")
+    quit()
+
 # filepath
-training_data_filepath = 'human_emotion_training_data/train'
-validation_data_filepath = 'human_emotion_training_data/test'
+# training_data_filepath = 'human_emotion_training_data/train'
+# validation_data_filepath = 'human_emotion_training_data/test'
 
-fl = os.listdir(training_data_filepath)
+# fl = os.listdir(validation_data_filepath)
 
-print(fl)
+# print(fl)
 
 emotion_dict = {0: "Angry", 1: "Disgusted", 2: "Fearful", 3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"}
 
@@ -25,12 +41,13 @@ emotion_model = model_from_json(loaded_model_json)
 emotion_model.load_weights("models/ResNet50_model.h5")
 print("Loaded model from disk")
 
-# start the webcam feed
-# cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-
 # Load the video
-video_path = 'sample2.mp4'  # Replace with the path to your video file
+video_path = default_video_path
 cap = cv2.VideoCapture(video_path)
+
+if use_webcam:
+    # start the webcam feed
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 # Get video details
 frame_width = int(cap.get(3))
@@ -47,7 +64,8 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fronta
 while True:
     ret, frame = cap.read()
     
-    frame = cv2.resize(frame, (desired_width, desired_height))
+    if use_webcam == False:
+        frame = cv2.resize(frame, (desired_width, desired_height))
     if not ret:
         break
     

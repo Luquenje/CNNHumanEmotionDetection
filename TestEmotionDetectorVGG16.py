@@ -4,8 +4,20 @@ import numpy as np
 from keras.models import model_from_json
 import os
 
+# def is_valid_image(file_path):
+#     try:
+#         with open(file_path, 'rb') as f:
+#             header = f.read(32)
+#             return imghdr.what(None, header) is not None
+#     except (IOError, SyntaxError):
+#         return False
+
+# def is_valid_image(file_path):
+#     image_type = imghdr.what(file_path)
+#     return image_type is not None
+
 use_webcam = False
-default_video_path = 'sample2.mp4'
+default_video_path = 'test_videos/sample2.mp4'
 
 # total cmd line arguments
 n = len(sys.argv)

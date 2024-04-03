@@ -57,6 +57,8 @@ test_generator = test_data_gen.flow_from_directory(
 # print("-----------------------------------------------------------------")
 # print(classification_report(test_generator.classes, predictions.argmax(axis=1)))
 
+print("Evaluating the model...")
+
 # Predict the labels for the test data using predict_generator
 Y_pred = emotion_model.predict_generator(test_generator)
 

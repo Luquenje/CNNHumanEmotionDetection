@@ -2,28 +2,35 @@ Setup:
 The project contains a conda_python_env.yaml file. This file contains the python environment nessecary to run the python files in this project. 
 1. Install Anaconda and make sure it is added to your system's path environment variable.
 2. Open Anaconda. Go to environments and import the conda_python_env.yaml as a new python virtual environment.
-3. Run the python files in the project in the imported python virtual environment. 
-4. To run the python files from the command line, type conda activate <environment_name> to switch the python environment to the newly imported one.
-5. Type python <filename.py args> to run the python code (The args are for files that require arguments)
+3. To run the python files from the command line, type conda activate <environment_name> to switch the python environment to the newly imported one. If this works, jump to step 4.
+3.1 If this does not work, open the Anaconda and go to Environments.
+3.2 Select the imported environment and open a terminal.
+3.3 Change directory to the project directory.
+4. Type python <filename.py args> to run the python program (The args are for files that require arguments)
 
-Project
+Project:
 This project contains 6 python files.
 
 TrainEmotionDetectorVGG16.py
 This program trains a vgg16 convolutional neural network model on the FER-2013 dataset to detect 7 human emotions. 
-It outputs 2 files.
+It outputs 3 files.
 VGG16_model.json - Contains the model information
 VGG16_model.h5 - Contains the trained weights of the model
+vgg16_model_plot.png - Contains the implot graphs of the training vs validation accuracy and loss.
 
 TrainEmotionDetectorResNet50.py
 This program trains a ResNet50 convolutional neural network model on the FER-2013 dataset to detect 7 human emotions. 
-It outputs 2 files.
+It outputs 3 files.
 ResNet50_model.json - Contains the model information
 ResNet50_model.h5 - Contains the trained weights of the model
+resnet50_model_plot.png - Contains the implot graphs of the training vs validation accuracy and loss.
 
 EvaluateEmotionDetectorVGG16.py & EvaluateEmotionDetectorResNet50.py
 This program evaluates the trained model on the test image set of the FER-2013 dataset.
 The evaluation gives information such as accuracy, precision, recall, f1-score and a confusion matrix
+It outputs 2 files.
+vgg16_model_confusion_mtx.png / resnet50_model_confusion_mtx.png - The confusion matrix of the evaluated model
+VGG16_Model_Diagram.png / ResNet50_Model_Diagram.png - An image that shows the model structure
 
 TestEmotionDetectorVGG16.py & TestEmotionDetectorResNet50.py
 This program loads the trained model and tests it on sample videos.
